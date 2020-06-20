@@ -1,3 +1,4 @@
+import bittrex_bot
 import tweepy
 import os
 
@@ -11,9 +12,12 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-list_= ["$DGB","#DGB","DGB","dgb","DigiByte", "DIGIBYTE", "digibyte"]
+dgb_list= ["$DGB","$dgb" ,"#DGB", "#dgb" ,"DGB","dgb","DigiByte", "DIGIBYTE", "digibyte"]
 
 for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
     tweet = status.full_text
-    if any(word in tweet for word in list_):
+    if any(word in tweet for word in dgb_list):
+        print("Found a tweet: ")
         print(tweet)
+        print()
+        bittrex_bot.go_all_in_on_dgb()

@@ -1,11 +1,14 @@
 import ccxt
 import os
+import time
 
 bittrex = ccxt.bittrex()
-bittrex.apiKey = os.environ["PUBLIC_KEY"]
+bittrex.apiKey = os.environ['PUBLIC_KEY']
 bittrex.secret = os.environ['SECRET_KEY']
 bittrex.checkRequiredCredentials()  # raises AuthenticationError
 markets = bittrex.load_markets()
+
+usddgb = bittrex.markets['DGB/USD']
 
 
 def get_crypto_balance(crypto):
@@ -15,6 +18,40 @@ def get_crypto_balance(crypto):
     return crypto_balance
 
 
-get_crypto_balance("USD")
-print()
-print(bittrex, markets)
+def cancel_all_open_order():
+    open_orders = bittrex.fetch_open_orders()
+    for order in open_orders:
+        order_id = order['id']
+        print(f"Cancelling order {order_id}")
+        bittrex.cancel_order(order_id)
+
+
+def get_ask_for_dgb():
+    ask = bittrex.fetch_ticker('DGB/USD')['ask']
+    print(f'Current ask: {ask}' )
+    return ask
+
+
+
+def go_all_in_on_dgb():
+    cancel_all_open_order()
+
+    time.sleep(1)
+    
+    balance = get_crypto_balance('USD')['Available']
+    ask = get_ask_for_dgb()
+
+    possible_buy_size = (balance / ask) - 1000
+
+    print(f"Will buy ~ {int(possible_buy_size)}")
+    
+    #bittrex.create_market_buy_order('DGB/USD', 301)
+
+    print("all in to DGB banx $$$$$$")
+
+
+
+#get_crypto_balance("USD")
+#print(usddgb)
+#print()
+#print(bittrex.fetch_order_book("DGB/USD"))
