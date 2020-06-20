@@ -34,22 +34,24 @@ def get_ask_for_dgb():
 
 
 def go_all_in_on_dgb():
-    cancel_all_open_order()
+    try:
+        cancel_all_open_order()
 
-    time.sleep(1)
+        time.sleep(1)
+        
+        balance = get_crypto_balance('USD')['Available']
+        ask = get_ask_for_dgb()
+
+        possible_buy_size = (balance / ask) - 1000
+
+        print(f"Will buy ~ {int(possible_buy_size)}")
+        
+        #bittrex.create_market_buy_order('DGB/USD', 301)
+
+        print("all in to DGB banx $$$$$$")
+    except Exception:
+        go_all_in_on_dgb()
     
-    balance = get_crypto_balance('USD')['Available']
-    ask = get_ask_for_dgb()
-
-    possible_buy_size = (balance / ask) - 1000
-
-    print(f"Will buy ~ {int(possible_buy_size)}")
-    
-    #bittrex.create_market_buy_order('DGB/USD', 301)
-
-    print("all in to DGB banx $$$$$$")
-
-
 
 #get_crypto_balance("USD")
 #print(usddgb)
