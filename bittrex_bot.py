@@ -41,8 +41,11 @@ def go_all_in_on_dgb():
         
         balance = get_crypto_balance('USD')['Available']
         ask = get_ask_for_dgb()
-
-        possible_buy_size = (balance / ask) - 1000
+        
+        possible_buy_size = (balance / ask)
+        
+        if possible_buy_size > 1350:
+            possible_buy_size -= 1000
 
         print(f"Will buy ~ {int(possible_buy_size)}")
         
