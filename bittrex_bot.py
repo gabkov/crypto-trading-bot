@@ -46,10 +46,13 @@ def go_all_in_on_dgb():
         
         if possible_buy_size > 1350:
             possible_buy_size -= 1000
+        
+        if possible_buy_size < 300:
+            return
 
         print(f"Will buy ~ {int(possible_buy_size)}")
         
-        #bittrex.create_market_buy_order('DGB/USD', 301)
+       #bittrex.create_market_buy_order('DGB/USD', int(possible_buy_size))
 
         print("all in to DGB banx $$$$$$")
     except Exception:

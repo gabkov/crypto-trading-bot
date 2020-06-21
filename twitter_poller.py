@@ -1,4 +1,3 @@
-import bittrex_bot
 import tweepy
 import os
 
@@ -16,11 +15,12 @@ dgb_list= ["$DGB","$dgb" ,"#DGB", "#dgb" ,"DGB","dgb","DigiByte", "DIGIBYTE", "d
 positive_list = ["listing", "listed", "add", "added", "adding", "trading", "tradeable", "Listing", "Listed", "Add", "Added", "Adding", "Trading", "Tradeable"]
 
 
-for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
-    tweet = status.full_text
-    if any(word in tweet for word in dgb_list):
-        if any(word in tweet for word in positive_list):
-            print("Found a tweet: ")
-            print(tweet)
-            print()
-            bittrex_bot.go_all_in_on_dgb()
+def poll_tweets():
+    for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
+        tweet = status.full_text
+        if any(word in tweet for word in dgb_list):
+            if any(word in tweet for word in positive_list):
+                print("Found a tweet: ")
+                print(tweet)
+                print()
+                return True
