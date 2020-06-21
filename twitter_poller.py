@@ -16,17 +16,30 @@ dgb_list= ["$DGB","$dgb" ,"#DGB", "#dgb" ,"DGB","dgb","DigiByte", "DIGIBYTE", "d
 positive_list = ["listing", "listed", "add", "added", "adding", "trading", "tradeable", "Listing", "Listed", "Add", "Added", "Adding", "Trading", "Tradeable"]
 
 
-def poll_tweets():
+def poll_tweets_from_user(username):
     try:
-        for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
+        for status in tweepy.Cursor(api.user_timeline, screen_name=username, tweet_mode="extended").items(5):
             tweet = status.full_text
             if any(word in tweet for word in dgb_list):
                 if any(word in tweet for word in positive_list):
                     print("Found a tweet: ")
                     print(tweet)
                     print()
-                    telegram_channel.send_message_to_me(f"Found tweet: \n\n{tweet}")
+                    telegram_channel.send_message_to_me(f"Found tweet at Segal: \n\n{tweet}")
                     return True
     except Exception as e:
         telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
-    
+
+
+def poll_tweets_from_cb_pro():
+    try:
+        for status in tweepy.Cursor(api.user_timeline, screen_name='@CoinbasePro', tweet_mode="extended").items(5):
+            tweet = status.full_text
+            if any(word in tweet for word in dgb_list):
+                print("Found a tweet: ")
+                print(tweet)
+                print()
+                telegram_channel.send_message_to_me(f"Found tweet at CB Pro: \n\n{tweet}")
+                return True
+    except Exception as e:
+        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
