@@ -1,5 +1,6 @@
 import tweepy
 import os
+import telegram_channel
 
 consumer_key = os.environ["CONSUMER_KEY"]
 consumer_secret = os.environ["CONSUMER_SECRET"]
@@ -16,11 +17,16 @@ positive_list = ["listing", "listed", "add", "added", "adding", "trading", "trad
 
 
 def poll_tweets():
-    for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
-        tweet = status.full_text
-        if any(word in tweet for word in dgb_list):
-            if any(word in tweet for word in positive_list):
-                print("Found a tweet: ")
-                print(tweet)
-                print()
-                return True
+    try:
+        for status in tweepy.Cursor(api.user_timeline, screen_name='@zosegal',tweet_mode="extended").items(5):
+            tweet = status.full_text
+            if any(word in tweet for word in dgb_list):
+                if any(word in tweet for word in positive_list):
+                    print("Found a tweet: ")
+                    print(tweet)
+                    print()
+                    telegram_channel.send_message_to_me(f"Found tweet: \n\n{tweet}")
+                    return True
+    except Exception as e:
+        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
+    

@@ -1,6 +1,7 @@
 import ccxt
 import os
 import time
+import telegram_channel
 
 bittrex = ccxt.bittrex()
 bittrex.apiKey = os.environ['PUBLIC_KEY']
@@ -46,18 +47,23 @@ def go_all_in_on_dgb():
         
         if possible_buy_size > 1350:
             possible_buy_size -= 1000
-        
-        if possible_buy_size < 300:
-            return
 
         print(f"Will buy ~ {int(possible_buy_size)}")
         
-       #bittrex.create_market_buy_order('DGB/USD', int(possible_buy_size))
+        #bittrex.create_market_buy_order('DGB/USD', 5)
+        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {possible_buy_size}")
 
-        print("all in to DGB banx $$$$$$")
-    except Exception:
+        print("All in to DGB banx $$$$$$")
+
+        if possible_buy_size < 300:
+            return
+        else:
+            go_all_in_on_dgb()
+
+    except Exception as e:
+        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
         go_all_in_on_dgb()
-    
+
 
 #get_crypto_balance("USD")
 #print(usddgb)
