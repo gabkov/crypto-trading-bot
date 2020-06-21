@@ -1,5 +1,5 @@
 #!/bin/sh
 
-./env.sh
+. env.sh
 
-python bittrex_bot.py
+python main.py
