@@ -28,6 +28,7 @@ def poll_tweets_from_user(username):
                     telegram_channel.send_message_to_me(f"Found tweet at Segal: \n\n{tweet}")
                     return True
     except Exception as e:
+        print(e)
         telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
 
 
@@ -42,4 +43,5 @@ def poll_tweets_from_cb_pro():
                 telegram_channel.send_message_to_me(f"Found tweet at CB Pro: \n\n{tweet}")
                 return True
     except Exception as e:
+        print(e)
         telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
