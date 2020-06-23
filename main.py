@@ -1,13 +1,17 @@
 import bittrex_bot
 import twitter_poller
 import time
+import telegram_channel
 
 if __name__ == "__main__":
     print('Bot starting...')
     i = 0
     while True:
         i+= 1
-        print(f"*** ROUND {i}. ***")
+        round = f"*** ROUND {i}. ***"
+        print(round)
+        if i % 500 == 0:
+            telegram_channel.send_message_to_me(round)
         print("Polling segal twitter....")
         if twitter_poller.poll_tweets_from_user('@zosegal'):
             print("Found tweet at segals page.")
