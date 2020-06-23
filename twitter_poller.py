@@ -29,19 +29,19 @@ def poll_tweets_from_user(username):
                     return True
     except Exception as e:
         print(e)
-        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
+        telegram_channel.send_message_to_me(f"EXCEPTION poll_tweets_from_user({username}):\n{e}")
 
 
-def poll_tweets_from_cb_pro():
+def poll_tweets_from_cb_accounts(coinbase_acc):
     try:
-        for status in tweepy.Cursor(api.user_timeline, screen_name='@CoinbasePro', tweet_mode="extended").items(5):
+        for status in tweepy.Cursor(api.user_timeline, screen_name=coinbase_acc, tweet_mode="extended").items(5):
             tweet = status.full_text
             if any(word in tweet for word in dgb_list):
                 print("Found a tweet: ")
                 print(tweet)
                 print()
-                telegram_channel.send_message_to_me(f"Found tweet at CB Pro: \n\n{tweet}")
+                telegram_channel.send_message_to_me(f"Found tweet at {coinbase_acc}: \n\n{tweet}")
                 return True
     except Exception as e:
         print(e)
-        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
+        telegram_channel.send_message_to_me(f"EXCEPTION poll_tweets_from_cb_accounts({coinbase_acc}):\n{e}")

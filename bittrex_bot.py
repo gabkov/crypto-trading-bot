@@ -61,7 +61,7 @@ def go_all_in_on_dgb():
             go_all_in_on_dgb()
 
     except Exception as e:
-        telegram_channel.send_message_to_me("EXCEPTION:\n{}".format(e))
+        telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
         go_all_in_on_dgb()
 
 
