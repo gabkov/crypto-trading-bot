@@ -50,7 +50,7 @@ def go_all_in_on_dgb():
 
         print(f"Will buy ~ {int(possible_buy_size)}")
         
-        #bittrex.create_market_buy_order('DGB/USD', 5)
+        bittrex.create_market_buy_order('DGB/USD', int(possible_buy_size))
         telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {possible_buy_size}")
 
         print("All in to DGB banx $$$$$$")
