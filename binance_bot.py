@@ -58,14 +58,14 @@ def go_all_in_on_dgb():
 
         print("All in to DGB BINANCE banx $$$$$$")
 
-        if possible_buy_size < 500:
+        if possible_buy_size <= 500:
             return
         else:
             go_all_in_on_dgb()
 
     except Exception as e:
         telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
-        if possible_buy_size < 500:
+        if possible_buy_size <= 500:
             return
         go_all_in_on_dgb()
 
