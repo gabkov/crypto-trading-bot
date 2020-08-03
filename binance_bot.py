@@ -3,32 +3,35 @@ import os
 import time
 import telegram_channel
 
-bittrex = ccxt.bittrex()
-bittrex.apiKey = os.environ['PUBLIC_KEY']
-bittrex.secret = os.environ['SECRET_KEY']
-bittrex.checkRequiredCredentials()  # raises AuthenticationError
-markets = bittrex.load_markets()
+binance = ccxt.binance({ 'options': { 'adjustForTimeDifference': True }})
+binance.apiKey = os.environ['BINANCE_PUBLIC_KEY']
+binance.secret = os.environ['BINANCE_SECRET_KEY']
+binance.checkRequiredCredentials()  # raises AuthenticationError
+markets = binance.load_markets()
 
-usddgb = bittrex.markets['DGB/USD']
+usdtdgb = binance.markets['DGB/USDT']
 
 
 def get_crypto_balance(crypto):
-    balance_list = bittrex.fetch_balance()['info']
-    crypto_balance = [balance for balance in balance_list if balance['Currency'] == crypto][0]
-    print(f'{crypto} balance: {crypto_balance["Balance"]}  Available: {crypto_balance["Available"]}')
+    balance_list = binance.fetch_balance()['info']['balances']
+    crypto_balance = [balance for balance in balance_list if balance['asset'] == crypto][0]
+    free = crypto_balance['free']
+    locked = crypto_balance['locked']
+    total = float(free) + float(locked)
+    print(f'{crypto} balance total: {int(total)}  Available: {free}')
     return crypto_balance
 
 
 def cancel_all_open_order():
-    open_orders = bittrex.fetch_open_orders()
+    open_orders = binance.fetch_open_orders(symbol="VET/USDT")
     for order in open_orders:
         order_id = order['id']
         print(f"Cancelling order {order_id}")
-        bittrex.cancel_order(order_id)
+        binance.cancel_order(order_id, symbol=order["symbol"])
 
 
 def get_ask_for_dgb():
-    ask = bittrex.fetch_ticker('DGB/USD')['ask']
+    ask = binance.fetch_ticker('DGB/USDT')['ask']
     print(f'Current ask: {ask}' )
     return ask
 
@@ -40,7 +43,7 @@ def go_all_in_on_dgb():
 
         time.sleep(1)
         
-        balance = get_crypto_balance('USD')['Available']
+        balance = float(get_crypto_balance('USDT')['free'])
         ask = get_ask_for_dgb()
         
         possible_buy_size = (balance / ask)
@@ -50,10 +53,10 @@ def go_all_in_on_dgb():
 
         print(f"Will buy ~ {int(possible_buy_size)}")
         
-        bittrex.create_market_buy_order('DGB/USD', int(possible_buy_size))
+        binance.create_market_buy_order('DGB/USDT', int(possible_buy_size))
         telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {possible_buy_size}")
 
-        print("All in to DGB BITTREX banx $$$$$$")
+        print("All in to DGB BINANCE banx $$$$$$")
 
         if possible_buy_size < 300:
             return
@@ -65,11 +68,11 @@ def go_all_in_on_dgb():
         go_all_in_on_dgb()
 
 
-#get_crypto_balance("USD")
+#get_crypto_balance("USDT")
 #print(usddgb)
 #print()
 #print(bittrex.fetch_order_book("DGB/USD"))
 
 
-#open_orders = bittrex.fetch_open_orders()
+#open_orders = binance.fetch_open_orders(symbol="VET/USDT")
 #[print(order) for order in open_orders]
