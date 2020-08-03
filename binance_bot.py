@@ -65,6 +65,8 @@ def go_all_in_on_dgb():
 
     except Exception as e:
         telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
+        if possible_buy_size < 300:
+            return
         go_all_in_on_dgb()
 
 
