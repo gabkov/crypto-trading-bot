@@ -9,8 +9,6 @@ binance.secret = os.environ['BINANCE_SECRET_KEY']
 binance.checkRequiredCredentials()  # raises AuthenticationError
 markets = binance.load_markets()
 
-usdtdgb = binance.markets['DGB/USDT']
-
 
 def get_crypto_balance(crypto):
     balance_list = binance.fetch_balance()['info']['balances']
@@ -30,51 +28,31 @@ def cancel_all_open_order():
         binance.cancel_order(order_id, symbol=order["symbol"])
 
 
-def get_ask_for_dgb():
-    ask = binance.fetch_ticker('DGB/USDT')['ask']
-    print(f'Current ask: {ask}' )
+def get_ask_for_pair(pair):
+    ask = binance.fetch_ticker(pair)['ask']
+    print(f'Current ask for {pair}: {ask}' )
     return ask
 
 
-
-def go_all_in_on_dgb():
+def make_buy_order_for_symbol(symbol):
+    pair = symbol + "/USDT"
     try:
-        cancel_all_open_order()
-
-        time.sleep(1)
-        
         balance = float(get_crypto_balance('USDT')['free'])
-        ask = get_ask_for_dgb()
+        
+        ask = get_ask_for_pair(pair)
         
         possible_buy_size = (balance / ask)
         
-        if possible_buy_size > 1350:
-            possible_buy_size -= 1000
-
-        print(f"Will buy ~ {int(possible_buy_size)}")
+        buy_order = int(possible_buy_size * 0.99)
         
-        binance.create_market_buy_order('DGB/USDT', int(possible_buy_size))
-        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {possible_buy_size}")
+        print(f"Will buy ~ {buy_order} and the original buy size is {possible_buy_size}")
+        
+        binance.create_market_buy_order(pair, int(buy_order))
+        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order}")
 
-        print("All in to DGB BINANCE banx $$$$$$")
-
-        if possible_buy_size <= 500:
-            return
-        else:
-            go_all_in_on_dgb()
+        print(f"All in to {pair} on BINANCE banx $$$$$$")
 
     except Exception as e:
         telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
-        if possible_buy_size <= 500:
-            return
-        go_all_in_on_dgb()
-
-
-#get_crypto_balance("USDT")
-#print(usddgb)
-#print()
-#print(bittrex.fetch_order_book("DGB/USD"))
-
-
-#open_orders = binance.fetch_open_orders(symbol="VET/USDT")
-#[print(order) for order in open_orders]
+        make_buy_order_for_symbol(symbol)
+        

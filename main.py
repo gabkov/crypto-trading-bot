@@ -1,4 +1,3 @@
-import bittrex_bot
 import binance_bot
 import twitter_poller
 import time
@@ -13,19 +12,15 @@ if __name__ == "__main__":
         print(round)
         if i % 500 == 0:
             telegram_channel.send_message_to_me(round)
-        print("Polling segal twitter....")
-        if twitter_poller.poll_tweets_from_user('@zosegal'):
-            print("Found tweet at segals page.")
-            bittrex_bot.go_all_in_on_dgb()
-            binance_bot.go_all_in_on_dgb()
         print("Polling CB pro twitter....")
-        if twitter_poller.poll_tweets_from_cb_accounts('@CoinbasePro'):
+        result = twitter_poller.poll_tweets_from_cb_accounts('@CoinbasePro')
+        if result:
+            symbol = result[0]
             print("Found tweet at CoinbasePro page.")
-            bittrex_bot.go_all_in_on_dgb()
-            binance_bot.go_all_in_on_dgb()
-        print("Polling Coinbase twitter....")
-        if twitter_poller.poll_tweets_from_cb_accounts('@coinbase'):
-            print("Found tweet at Coinbase page.")
-            bittrex_bot.go_all_in_on_dgb()
-            binance_bot.go_all_in_on_dgb()
+            binance_bot.make_buy_order_for_symbol(symbol)
+            break
+        
         time.sleep(3)
+
+    print("Bot succesfully finished")
+    telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")

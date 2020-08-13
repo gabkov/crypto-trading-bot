@@ -12,36 +12,24 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-dgb_list= ["$DGB","$dgb" ,"#DGB", "#dgb" ,"DGB","dgb","DigiByte", "DIGIBYTE", "digibyte"]
-positive_list = ["listing", "listed", "add", "added", "adding", "trading", "tradeable", "Listing", "Listed", "Add", "Added", "Adding", "Trading", "Tradeable"]
 
-
-def poll_tweets_from_user(username):
-    try:
-        for status in tweepy.Cursor(api.user_timeline, screen_name=username, tweet_mode="extended").items(5):
-            tweet = status.full_text
-            if any(word in tweet for word in dgb_list):
-                if any(word in tweet for word in positive_list):
-                    print("Found a tweet: ")
-                    print(tweet)
-                    print()
-                    telegram_channel.send_message_to_me(f"Found tweet at Segal: \n\n{tweet}")
-                    return True
-    except Exception as e:
-        print(e)
-        telegram_channel.send_message_to_me(f"EXCEPTION poll_tweets_from_user({username}):\n{e}")
+#DCR (BTC nagyobb volume)?!
+tickers = ["ADA", "DGB", "VET", "ENJ", "IOST", "MFT", "THETA", "NEO", "STORJ", "ZIL", "DCR", "MATIC", "ONE", "ONT", "WAVES", "SOL", "LEND", "BNT", "ZEN", "OGN", "REN", "SC", "SNX", "BAL", "STX", "FET", "HBAR", "KAVA"]
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
     try:
         for status in tweepy.Cursor(api.user_timeline, screen_name=coinbase_acc, tweet_mode="extended").items(5):
             tweet = status.full_text
-            if any(word in tweet for word in dgb_list):
-                print("Found a tweet: ")
+            res = [ticker for ticker in tickers if(ticker in tweet)]
+            if res:
+                symbol = res[0]
+                print(f"Found a tweet for symbol: {symbol}")
                 print(tweet)
                 print()
-                telegram_channel.send_message_to_me(f"Found tweet at {coinbase_acc}: \n\n{tweet}")
-                return True
+                telegram_channel.send_message_to_me(f"Found tweet for symbol {symbol} at {coinbase_acc}: \n\n{tweet}")
+                return res
+        return []
     except Exception as e:
         print(e)
         telegram_channel.send_message_to_me(f"EXCEPTION poll_tweets_from_cb_accounts({coinbase_acc}):\n{e}")
