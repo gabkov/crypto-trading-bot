@@ -20,7 +20,7 @@ if __name__ == "__main__":
             binance_bot.make_buy_order_for_symbol(symbol)
             break
         
-        time.sleep(3)
+        time.sleep(2)
 
     print("Bot succesfully finished")
     telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")
