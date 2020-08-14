@@ -17,7 +17,7 @@ api = tweepy.API(auth)
 tickers = ["ADA", "DGB", "VET", "ENJ", "IOST", "MFT", "THETA", "NEO", 
 "STORJ", "ZIL", "DCR", "MATIC", "ONE", "ONT", "WAVES", "SOL", "LEND", 
 "BNT", "ZEN", "OGN", "REN", "SNX", "BAL", "STX", "FET", "HBAR", 
-"KAVA", "QTUM", "TRX", "XMR", "IOTA", "BTT", "DOGE", "ICX", "SC", "ERD"]
+"KAVA", "QTUM", "TRX", "XMR", "IOTA", "BTT", "DOGE", "ICX", "SC", "ERD", "CRV"]
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
