@@ -14,7 +14,10 @@ api = tweepy.API(auth)
 
 
 #DCR (BTC nagyobb volume)?!
-tickers = ["ADA", "DGB", "VET", "ENJ", "IOST", "MFT", "THETA", "NEO", "STORJ", "ZIL", "DCR", "MATIC", "ONE", "ONT", "WAVES", "SOL", "LEND", "BNT", "ZEN", "OGN", "REN", "SC", "SNX", "BAL", "STX", "FET", "HBAR", "KAVA"]
+tickers = ["ADA", "DGB", "VET", "ENJ", "IOST", "MFT", "THETA", "NEO", 
+"STORJ", "ZIL", "DCR", "MATIC", "ONE", "ONT", "WAVES", "SOL", "LEND", 
+"BNT", "ZEN", "OGN", "REN", "SNX", "BAL", "STX", "FET", "HBAR", 
+"KAVA", "QTUM", "TRX", "XMR", "IOTA", "BTT", "DOGE", "ICX", "SC", "ERD"]
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
