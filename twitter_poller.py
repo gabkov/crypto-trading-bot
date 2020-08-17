@@ -14,7 +14,7 @@ api = tweepy.API(auth)
 
 
 #DCR (BTC nagyobb volume)?!
-tickers = ['MATIC', 'STORJ', 'THETA', 'WAVES', 
+tickers = ['OCEAN', 'MATIC', 'STORJ', 'THETA', 'WAVES', 
 'DOGE', 'HBAR', 'IOST', 'IOTA', 'KAVA', 'LEND', 'NANO', 'QTUM', 
 'ADA', 'ANT', 'BAL', 'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DCR', 
 'DGB', 'ENJ', 'ERD', 'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 
