@@ -14,12 +14,12 @@ api = tweepy.API(auth)
 
 
 #DCR (BTC nagyobb volume)?!
-tickers = ['OCEAN', 'MATIC', 'STORJ', 'THETA', 'WAVES', 
-'DOGE', 'HBAR', 'IOST', 'IOTA', 'KAVA', 'LEND', 'NANO', 'QTUM', 
-'ADA', 'ANT', 'BAL', 'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DCR', 
-'DGB', 'ENJ', 'ERD', 'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 
-'MFT', 'NEO', 'OGN', 'ONE', 'ONT', 'REN', 'RLC', 'RVN', 'SNX', 
-'SOL', 'SRM', 'STX', 'SXP', 'TRX', 'VET', 'XMR', 'YFI', 'ZEN', 'ZIL', 'SC']
+tickers = ['MATIC', 'OCEAN', 'STORJ', 'THETA', 'WAVES', 'DOGE', 'HBAR',
+'IOST', 'IOTA', 'KAVA', 'LEND', 'NANO', 'QTUM', 'ADA', 'ANT', 'BAL',
+'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DGB', 'DOT', 'ENJ', 'ERD',
+'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 'MFT', 'NEO', 'OGN', 'ONE',
+'ONT', 'REN', 'RLC', 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TRX',
+'VET', 'XMR', 'YFI', 'ZEN', 'ZIL', 'SC']
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
