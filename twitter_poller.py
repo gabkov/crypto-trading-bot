@@ -18,7 +18,7 @@ tickers = ['MATIC', 'OCEAN', 'STORJ', 'THETA', 'WAVES', 'DOGE', 'HBAR',
 'IOST', 'IOTA', 'KAVA', 'LEND', 'NANO', 'QTUM', 'ADA', 'ANT', 'BAL',
 'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DGB', 'DOT', 'ENJ', 'ERD',
 'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 'MFT', 'NEO', 'OGN', 'ONE',
-'ONT', 'REN', 'RLC', 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TRX',
+'ONT', 'REN', 'RLC', 'RSR', 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TRX',
 'VET', 'XMR', 'YFI', 'ZEN', 'ZIL', 'SC']
 
 
