@@ -53,6 +53,7 @@ def make_buy_order_for_symbol(symbol):
         print(f"All in to {pair} on BINANCE banx $$$$$$")
 
     except Exception as e:
+        print(e)
         telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
         make_buy_order_for_symbol(symbol)
         
