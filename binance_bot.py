@@ -46,6 +46,7 @@ def make_buy_order_for_symbol(symbol):
         buy_order = int(possible_buy_size * 0.99)
         
         print(f"Will buy ~ {buy_order} and the original buy size is {possible_buy_size}")
+        telegram_channel.send_message_to_me(f"Will buy ~ {buy_order} at {ask} and the original buy size is {possible_buy_size}")
         
         binance.create_market_buy_order(pair, int(buy_order))
         telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order}")
