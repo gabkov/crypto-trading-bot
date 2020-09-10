@@ -14,12 +14,17 @@ api = tweepy.API(auth)
 
 
 #DCR (BTC nagyobb volume)?!
-tickers = ['MATIC', 'OCEAN', 'STORJ', 'THETA', 'WAVES', 'DOGE', 'HBAR',
-'IOST', 'IOTA', 'KAVA', 'LEND', 'NANO',  'PAXG', 'QTUM', 'ADA', 'ANT', 'BAL',
-'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DGB', 'DOT', 'ENJ', 'ERD',
-'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 'MFT', 'NEO', 'OGN', 'ONE',
-'ONT', 'REN', 'RLC', 'RSR', 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TRX',
-'VET', 'XMR', 'ZEN', 'ZIL', 'SC']
+tickers = ['COCOS', 'MATIC', 'OCEAN', 'STORJ', 'STORM', 'STRAT', 'SUSHI', 'TFUEL', 'THETA', 
+'WAVES', 'AION', 'ANKR', 'ARDR', 'ARPA', 'BEAM', 'BZRX', 'CELR', 'COTI', 'CTSI', 'CTXC', 
+'DATA', 'DENT', 'DOCK', 'DOGE', 'DREP', 'DUSK', 'EGLD', 'HBAR', 'HIVE', 'IOST', 'IOTA', 
+'IOTX', 'IRIS', 'KAVA', 'LEND', 'LUNA', 'MITH', 'NANO', 'NPXS', 'NULS', 'PAXG', 'PERL', 
+'QTUM', 'RUNE', 'SAND', 'STMX', 'STPT', 'TOMO', 'TROY', 'VITE', 'VTHO', 'WNXM', 'YFII', 
+'ADA', 'ANT', 'BAL', 'BCC', 'BLZ', 'BNB', 'BNT', 'BSV', 'BTS', 'BTT', 'CHR', 'CHZ', 'COS', 
+'CRV', 'DCR', 'DGB', 'DIA', 'DOT', 'ENJ', 'ERD', 'FET', 'FIO', 'FTM', 'FTT', 'FUN', 'GTO', 
+'GXS', 'HOT', 'ICX', 'JST', 'KEY', 'KMD', 'KSM', 'LRC', 'LSK', 'LTO', 'MBL', 'MCO', 'MDT', 
+'MFT', 'MTL', 'NEO', 'NKN', 'OGN', 'ONE', 'ONG', 'ONT', 'PNT', 'REN', 'RLC', 'RSR', 
+'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TCT', 'TRB', 'TRX', 'VEN', 'VET', 'WAN', 'WIN', 
+'WRX', 'WTC', 'XMR', 'XZC', 'ZEN', 'ZIL', 'HC', 'SC']
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
