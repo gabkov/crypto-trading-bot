@@ -19,7 +19,7 @@ tickers = ['MATIC', 'OCEAN', 'STORJ', 'THETA', 'WAVES', 'DOGE', 'HBAR',
 'BNT', 'BTS', 'BTT', 'CRV', 'DCR', 'DGB', 'DOT', 'ENJ', 'ERD',
 'FET', 'HOT', 'ICX', 'JST', 'KMD', 'LSK', 'MFT', 'NEO', 'OGN', 'ONE',
 'ONT', 'REN', 'RLC', 'RSR', 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TRX',
-'VET', 'XMR', 'YFI', 'ZEN', 'ZIL', 'SC']
+'VET', 'XMR', 'ZEN', 'ZIL', 'SC']
 
 
 def poll_tweets_from_cb_accounts(coinbase_acc):
