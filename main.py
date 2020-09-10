@@ -10,7 +10,7 @@ if __name__ == "__main__":
         i+= 1
         round = f"*** ROUND {i}. ***"
         print(round)
-        if i % 500 == 0:
+        if i % 1000 == 0:
             telegram_channel.send_message_to_me(round)
         print("Polling CB pro twitter....")
         result = twitter_poller.poll_tweets_from_cb_accounts('@CoinbasePro')
@@ -20,7 +20,7 @@ if __name__ == "__main__":
             binance_bot.make_buy_order_for_symbol(symbol)
             break
         
-        time.sleep(2)
+        time.sleep(1)
 
     print("Bot succesfully finished")
     telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")
