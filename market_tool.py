@@ -54,7 +54,7 @@ tickers = ['COCOS', 'MATIC', 'OCEAN', 'STORJ', 'STORM', 'STRAT', 'SUSHI', 'TFUEL
 'ADA', 'ANT', 'BAL', 'BCC', 'BEL', 'BLZ', 'BNB', 'BNT', 'BSV', 'BTS', 'BTT', 'CHR', 'CHZ', 'COS', 
 'CRV', 'DCR', 'DGB', 'DIA', 'DOT', 'ENJ', 'ERD', 'FET', 'FIO', 'FTM', 'FTT', 'FUN', 'GTO', 
 'GXS', 'HOT', 'ICX', 'JST', 'KEY', 'KMD', 'KSM', 'LSK', 'LTO', 'MBL', 'MCO', 'MDT', 
-'MFT', 'MTL', 'NEO', 'NKN', 'OGN', 'ONE', 'ONG', 'ONT', 'OXT', 'PNT', 'REN', 'RLC', 'RSR', 
+'MFT', 'MTL', 'NEO', 'NKN', 'OGN', 'ONE', 'ONG', 'ONT', 'PNT', 'REN', 'RLC', 'RSR', 
 'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SXP', 'TCT', 'TRB', 'TRX', 'VEN', 'VET', 'WAN', 'WIN', 
 'WRX', 'WTC', 'XMR', 'XZC', 'ZEN', 'ZIL', 'HC', 'SC']
 
