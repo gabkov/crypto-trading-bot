@@ -13,7 +13,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 
-['COCOS', 'MATIC', 'OCEAN', 'STORJ', 'STORM', 'STRAT', 'SUSHI', 'TFUEL', 'THETA', 
+tickers = ['COCOS', 'MATIC', 'OCEAN', 'STORJ', 'STORM', 'STRAT', 'SUSHI', 'TFUEL', 'THETA', 
 'WAVES', 'AION', 'ANKR', 'ARDR', 'ARPA', 'AVAX', 'BEAM', 'BZRX', 'CELR', 'COTI', 
 'CTSI', 'CTXC', 'DATA', 'DENT', 'DOCK', 'DOGE', 'DREP', 'DUSK', 'EGLD', 'HBAR', 
 'HIVE', 'IOST', 'IOTA', 'IOTX', 'IRIS', 'KAVA', 'LEND', 'LUNA', 'MITH', 'NANO', 
