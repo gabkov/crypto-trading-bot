@@ -1,6 +1,7 @@
 import tweepy
 import os
 import telegram_channel
+import data_handler
 
 consumer_key = os.environ["CONSUMER_KEY"]
 consumer_secret = os.environ["CONSUMER_SECRET"]
@@ -12,22 +13,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-
-tickers = ['COCOS', 'MATIC', 'OCEAN', 'STORJ', 'STORM', 'STRAT', 'SUSHI', 'TFUEL', 'THETA', 
-'WAVES', 'AION', 'ANKR', 'ARDR', 'ARPA', 'AVAX', 'BEAM', 'BZRX', 'CELR', 'COTI', 
-'CTSI', 'CTXC', 'DATA', 'DENT', 'DOCK', 'DOGE', 'DREP', 'DUSK', 'EGLD', 'HBAR', 
-'HIVE', 'IOST', 'IOTA', 'IOTX', 'IRIS', 'KAVA', 'LEND', 'LUNA', 'MITH', 'NANO', 
-'NPXS', 'NULS', 'PAXG', 'PERL', 'QTUM', 'RUNE', 'SAND', 'STMX', 'STPT', 'TOMO', 
-'TROY', 'VITE', 'VTHO', 'WING', 'WNXM', 'YFII', 'ADA', 'ANT', 'BAL', 'BCC', 'BEL', 
-'BLZ', 'BNB', 'BNT', 'BSV', 'BTS', 'BTT', 'CHR', 'CHZ', 'COS', 'CRV', 'DCR', 'DGB', 
-'DIA', 'DOT', 'ENJ', 'ERD', 'FET', 'FIO', 'FTM', 'FTT', 'FUN', 'GTO', 'GXS', 'HNT', 'HOT', 
-'ICX', 'JST', 'KEY', 'KMD', 'KSM', 'LSK', 'LTO', 'MBL', 'MCO', 'MDT', 'MFT', 'MTL', 
-'NBS', 'NEO', 'NKN', 'OGN', 'ONE', 'ONG', 'ONT', 'PNT', 'REN', 'RLC', 'RSR', 
-'RVN', 'SNX', 'SOL', 'SRM', 'STX', 'SUN', 'SXP', 'TCT', 'TRB', 'TRX', 'VEN', 'VET', 
-'WAN', 'WIN', 'WRX', 'WTC', 'XMR', 'XZC', 'ZEN', 'ZIL', 'HC', 'SC']
-
-
-def poll_tweets_from_cb_accounts(coinbase_acc):
+def poll_tweets_from_cb_accounts(coinbase_acc, tickers):
     try:
         for status in tweepy.Cursor(api.user_timeline, screen_name=coinbase_acc, tweet_mode="extended").items(5):
             tweet = status.full_text
