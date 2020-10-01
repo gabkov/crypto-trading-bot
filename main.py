@@ -27,10 +27,7 @@ if __name__ == "__main__":
         if i % 2000 == 0:
             telegram_channel.send_message_to_me(round)
         print("Polling CB medium posts....")
-        start = time.time()
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
-        end = time.time()
-        print(end - start)
         if result:
             symbol = result[0]
             print("Found medium post.")
