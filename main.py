@@ -1,5 +1,5 @@
 import binance_bot
-import twitter_poller
+import medium_poller
 import time
 import telegram_channel
 import market_tool
@@ -24,17 +24,20 @@ if __name__ == "__main__":
         i+= 1
         round = f"*** ROUND {i}. ***"
         print(round)
-        if i % 1000 == 0:
+        if i % 2000 == 0:
             telegram_channel.send_message_to_me(round)
-        print("Polling CB pro twitter....")
-        result = twitter_poller.poll_tweets_from_cb_accounts('@CoinbasePro', new_ticker_list)
+        print("Polling CB medium posts....")
+        start = time.time()
+        result = medium_poller.poll_titles_from_medium(new_ticker_list)
+        end = time.time()
+        print(end - start)
         if result:
             symbol = result[0]
-            print("Found tweet at CoinbasePro page.")
+            print("Found medium post.")
             binance_bot.make_buy_order_for_symbol(symbol)
             break
         
-        time.sleep(1)
+        time.sleep(0.5)
 
     print("Bot succesfully finished")
     telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")
