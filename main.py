@@ -24,7 +24,7 @@ if __name__ == "__main__":
         i+= 1
         round = f"*** ROUND {i}. ***"
         print(round)
-        if i % 10000 == 0:
+        if i % 2000 == 0:
             telegram_channel.send_message_to_me(round)
         print("Polling CB medium posts....")
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
