@@ -32,10 +32,7 @@ def make_buy_order_for_symbol(symbol):
                 
         binance.create_market_buy_order(pair, int(buy_order))
         
-        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order}")
-
-        print(f"All in to {pair} on BINANCE banx $$$$$$")
-
+        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order} for {pair}")
     except Exception as e:
         print(e)
-        telegram_channel.send_message_to_me("EXCEPTION go_all_in_on_dgb():\n{}".format(e))
+        telegram_channel.send_message_to_me("EXCEPTION make_buy_order_for_symbol():\n{}".format(e))

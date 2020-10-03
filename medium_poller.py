@@ -10,7 +10,6 @@ def poll_titles_from_medium(tickers):
         if status_code != 200:
             telegram_channel.send_message_to_me(f"Status code for feed was {status_code}.")
             print(f"Status code for feed was {status_code}.")
-        feed_entries = feed.entries
         for entry in feed.entries:
             blog_post_title = entry.title
             res = [ticker for ticker in tickers if(ticker in blog_post_title)]
