@@ -10,10 +10,8 @@ binance.checkRequiredCredentials()  # raises AuthenticationError
 markets = binance.load_markets()
 
 
-def get_crypto_balance(crypto):
-    balance_list = binance.fetch_balance()['info']['balances']
-    crypto_balance = [balance for balance in balance_list if balance['asset'] == crypto][0]
-    return crypto_balance
+def get_free_usdt_balance():
+    return binance.fetch_free_balance()["USDT"]
 
 
 def get_ask_for_pair(pair):
@@ -24,7 +22,7 @@ def get_ask_for_pair(pair):
 def make_buy_order_for_symbol(symbol):
     pair = symbol + "/USDT"
     try:
-        balance = float(get_crypto_balance('USDT')['free'])
+        balance = get_free_usdt_balance()
         
         ask = get_ask_for_pair(pair)
         
