@@ -34,7 +34,7 @@ def get_new_coins(old_list, new_list):
 
 
 def basic_filter_and_sort(goldy):
-    goldy.sort()
+    goldy.sort(reverse=True)
     goldy.sort(key=len, reverse=True)
     return list(filter(lambda x : "USD" not in x and "AUD" not in x and "GBP" not in x and "EUR" not in x and "BKRW" not in x, goldy))
 

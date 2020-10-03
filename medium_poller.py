@@ -14,7 +14,8 @@ def poll_titles_from_medium(tickers):
         for entry in feed.entries:
             blog_post_title = entry.title
             res = [ticker for ticker in tickers if(ticker in blog_post_title)]
-            if res:
+            listing = "Coinbase Pro" in blog_post_title
+            if res and listing:
                 symbol = res[0]
                 print(f"Found a blog post for symbol: {symbol}")
                 print(blog_post_title)
