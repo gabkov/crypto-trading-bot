@@ -17,9 +17,6 @@ def poll_titles_from_medium(tickers):
             listing = "Coinbase Pro" in blog_post_title
             if res and listing:
                 symbol = res[0]
-                print(f"Found a blog post for symbol: {symbol}")
-                print(blog_post_title)
-                print()
                 telegram_channel.send_message_to_me(f"Found post for symbol {symbol}: \n\n{blog_post_title}")
                 return res
         return []

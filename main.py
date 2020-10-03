@@ -30,7 +30,6 @@ if __name__ == "__main__":
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
         if result:
             symbol = result[0]
-            print("Found medium post.")
             binance_bot.make_buy_order_for_symbol(symbol)
             break
         
