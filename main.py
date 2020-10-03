@@ -29,8 +29,7 @@ if __name__ == "__main__":
         print("Polling CB medium posts....")
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
         if result:
-            symbol = result[0]
-            binance_bot.make_buy_order_for_symbol(symbol)
+            binance_bot.handle_buy_order(result)
             break
         
         time.sleep(0.9)

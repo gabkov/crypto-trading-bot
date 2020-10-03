@@ -19,20 +19,21 @@ def get_ask_for_pair(pair):
     return ask
 
 
-def make_buy_order_for_symbol(symbol):
-    pair = symbol + "/USDT"
-    try:
-        balance = get_free_usdt_balance()
-        
-        ask = get_ask_for_pair(pair)
-        
-        possible_buy_size = (balance / ask)
-        
-        buy_order = int(possible_buy_size * 0.99)
-                
-        binance.create_market_buy_order(pair, int(buy_order))
-        
-        telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order} for {pair}")
-    except Exception as e:
-        print(e)
-        telegram_channel.send_message_to_me("EXCEPTION make_buy_order_for_symbol():\n{}".format(e))
+def handle_buy_order(symbols):
+    pairs = [symbol + "/USDT" for symbol in symbols]
+    free_balance = get_free_usdt_balance()
+    for_buying = int(free_balance * 0.99)
+    per_pair_buy_size = for_buying / len(symbols)
+    make_buy_order_for_pairs(pairs, per_pair_buy_size)
+
+
+def make_buy_order_for_pairs(pairs, per_pair_buy_size):
+    for pair in pairs:
+        try:
+            ask = get_ask_for_pair(pair)
+            buy_order = (per_pair_buy_size / ask)
+            binance.create_market_buy_order(pair, int(buy_order))
+            telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order} for {pair}")
+        except Exception as e:
+            print(e)
+            telegram_channel.send_message_to_me(f"EXCEPTION make_buy_order_for_pairs():\n{pair}\n{e}")
