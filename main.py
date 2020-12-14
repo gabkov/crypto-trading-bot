@@ -26,13 +26,12 @@ if __name__ == "__main__":
         print(round)
         if i % 1000 == 0:
             telegram_channel.send_message_to_me(round)
-        print("Polling CB medium posts....")
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
         if result:
             binance_bot.handle_buy_order(result)
             break
         
-        time.sleep(0.9)
+        time.sleep(1)
 
     print("Bot succesfully finished")
     telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")

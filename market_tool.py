@@ -42,7 +42,7 @@ def basic_filter_and_sort(goldy):
 def get_ticker_list():
     coinbase_coins = get_coinbase_coins_list()
     binance_usdt_pairs = get_binance_usdt_pairs()
-    already_listed = {'PAX', 'BAL', 'REN', 'FIL'}
+    already_listed = {'PAX', 'BAL', 'REN', 'FIL', 'AAVE', 'SNX', 'BNT'}
     tickers = set(binance_usdt_pairs) - set(coinbase_coins)
     tickers = tickers - already_listed
     tickers = list(tickers)

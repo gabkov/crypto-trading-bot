@@ -2,6 +2,7 @@ import ccxt
 import os
 import time
 import telegram_channel
+import datetime
 
 binance = ccxt.binance({ 'options': { 'adjustForTimeDifference': True }})
 binance.apiKey = os.environ['BINANCE_PUBLIC_KEY']
@@ -33,7 +34,8 @@ def make_buy_order_for_pairs(pairs, per_pair_buy_size):
             ask = get_ask_for_pair(pair)
             buy_order = (per_pair_buy_size / ask)
             binance.create_market_buy_order(pair, int(buy_order))
-            telegram_channel.send_message_to_me(f"Created market order at {ask} ~ {buy_order} for {pair}")
         except Exception as e:
             print(e)
             telegram_channel.send_message_to_me(f"EXCEPTION make_buy_order_for_pairs():\n{pair}\n{e}")
+    done = datetime.datetime.now()
+    telegram_channel.send_message_to_me(f"{done}: Created market order for pairs: {pairs} with ~ {per_pair_buy_size} USDT")
