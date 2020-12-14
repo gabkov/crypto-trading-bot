@@ -33,7 +33,8 @@ def make_buy_order_for_pairs(pairs, per_pair_buy_size):
         try:
             ask = get_ask_for_pair(pair)
             buy_order = (per_pair_buy_size / ask)
-            binance.create_market_buy_order(pair, int(buy_order))
+            #binance.create_market_buy_order(pair, int(buy_order))
+            binance.create_market_buy_order(pair, 300)
         except Exception as e:
             print(e)
             telegram_channel.send_message_to_me(f"EXCEPTION make_buy_order_for_pairs():\n{pair}\n{e}")
