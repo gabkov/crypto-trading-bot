@@ -25,10 +25,10 @@ if __name__ == "__main__":
         i+= 1
         round = f"*** ROUND {i}.***"
         print(round)
-        if i % 1000 == 0:
+        if i % 500 == 0:
             end = time.time()
             elapsed_time = end -start
-            detailed_round = f"*** ROUND {i}. took {elapsed_time}***"
+            detailed_round = f"*** ROUND {i}. took {int(elapsed_time)} ***"
             telegram_channel.send_message_to_me(detailed_round)
             start = time.time()
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
             binance_bot.handle_buy_order(result)
             break
         
-        time.sleep(1)
+        time.sleep(2)
 
     print("Bot succesfully finished")
     telegram_channel.send_message_to_me("LETS GO TO THE MOOOOOON!!!!")
