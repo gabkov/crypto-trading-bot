@@ -21,9 +21,9 @@ if __name__ == "__main__":
     
     i = 0
     start = time.time()
-    round = f"*** ROUND {i}.***"
     while True:
         i+= 1
+        round = f"*** ROUND {i}.***"
         print(round)
         if i % 1000 == 0:
             end = time.time()
