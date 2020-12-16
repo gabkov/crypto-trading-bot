@@ -20,12 +20,17 @@ if __name__ == "__main__":
     telegram_channel.send_message_to_me(f"FULL TICKER LIST:\n{new_ticker_list}")
     
     i = 0
+    start = time.time()
     while True:
         i+= 1
-        round = f"*** ROUND {i}. ***"
+        round = f"*** ROUND {i}.***"
         print(round)
         if i % 1000 == 0:
+            end = time.time()
+            elapsed_time = end -start
+            round = f"*** ROUND {i}. took {elapsed_time}***"
             telegram_channel.send_message_to_me(round)
+            start = time.time()
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
         if result:
             binance_bot.handle_buy_order(result)
