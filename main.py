@@ -6,6 +6,9 @@ import market_tool
 import data_handler
 
 
+def get_average_runtime_from_list(lst):
+    return sum(lst) / len(lst)
+
 if __name__ == "__main__":
     telegram_channel.send_message_to_me("<------- BOT STARTING ------->")
     print('Bot starting...')
@@ -19,6 +22,7 @@ if __name__ == "__main__":
     telegram_channel.send_message_to_me(f"New coins added: {new_coins}")
     telegram_channel.send_message_to_me(f"FULL TICKER LIST:\n{new_ticker_list}")
     
+    runtime_list = []
     i = 0
     start = time.time()
     while True:
@@ -28,10 +32,17 @@ if __name__ == "__main__":
         if i % 500 == 0:
             end = time.time()
             elapsed_time = end -start
-            detailed_round = f"*** ROUND {i}. took {int(elapsed_time)} ***"
+            detailed_round = f"*** ROUND {i}. took {int(elapsed_time)} polling average: {get_average_runtime_from_list(runtime_list)} max: {max(runtime_list)} min: {min(runtime_list)}***"
             telegram_channel.send_message_to_me(detailed_round)
             start = time.time()
+            runtime_list = []
+        
+        runtime_start = time.time()
         result = medium_poller.poll_titles_from_medium(new_ticker_list)
+        runtime_end = time.time()
+        runtime_duration = runtime_end - runtime_start
+        runtime_list.append(runtime_duration)
+
         if result:
             binance_bot.handle_buy_order(result)
             break
